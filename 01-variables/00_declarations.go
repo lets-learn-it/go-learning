@@ -23,4 +23,19 @@ func main() {
 	i = 95
 	j = 56
 	fmt.Printf("%d + %d = %d\n", i, j, i+j)
+
+	// declaring multiple vars of different types
+	var (
+		// personal
+		myName    string
+		myAddress string
+
+		// company
+		mySalary int
+	)
+
+	myAddress = "Kavathe Ekand"
+	myName = "Parikshit"
+
+	fmt.Printf("%s %s %d", myAddress, myName, mySalary)
 }

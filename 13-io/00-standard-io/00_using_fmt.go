@@ -16,4 +16,7 @@ func main() {
 	var name string
 	fmt.Scanln(&name)
 	fmt.Println(name)
+
+	// formatted output to stdout
+	fmt.Printf("my name is %v. I am %[1]v\n", name)
 }

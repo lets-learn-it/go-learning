@@ -28,10 +28,13 @@ func main() {
 	// get message from channel whichever has message
 	for {
 		select {
+		/* case msg1 & msg2 are same, case will be picked randomly */
 		case msg1 := <-c1:
-			fmt.Println(msg1)
-		case msg2 := <-c2:
-			fmt.Println(msg2)
+			fmt.Println("Case msg1: ", msg1)
+		case msg2 := <-c1:
+			fmt.Println("Case msg2: ", msg2)
+		case msg3 := <-c2:
+			fmt.Println("Case msg3: ", msg3)
 		}
 	}
 

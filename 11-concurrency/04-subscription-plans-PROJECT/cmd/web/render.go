@@ -5,6 +5,8 @@ import (
 	"html/template"
 	"net/http"
 	"time"
+
+	"avabodha.in/concurrency/subscription/data"
 )
 
 var pathToTemplates = "./cmd/web/templates"
@@ -19,7 +21,7 @@ type TemplateData struct {
 	Error         string
 	Authenticated bool
 	Now           time.Time
-	// User          *data.User
+	User          *data.User
 }
 
 func (app *Config) render(w http.ResponseWriter, r *http.Request, t string, td *TemplateData) {
@@ -60,11 +62,21 @@ func (app *Config) AddDefaultData(td *TemplateData, r *http.Request) *TemplateDa
 	td.Flash = app.Session.PopString(r.Context(), "flash")
 	td.Warning = app.Session.PopString(r.Context(), "warning")
 	td.Error = app.Session.PopString(r.Context(), "error")
-	td.Authenticated = app.isAuthenticated(r)
+	app.ErrorLog.Println(td)
+	if app.IsAuthenticated(r) {
+		td.Authenticated = true
+		// get more user information from session & cast it to data.User
+		user, ok := app.Session.Get(r.Context(), "user").(data.User)
+		if !ok {
+			app.ErrorLog.Println("User not found in session")
+		} else {
+			td.User = &user
+		}
+	}
 	td.Now = time.Now()
 	return td
 }
 
-func (app *Config) isAuthenticated(r *http.Request) bool {
+func (app *Config) IsAuthenticated(r *http.Request) bool {
 	return app.Session.Exists(r.Context(), "userID")
 }

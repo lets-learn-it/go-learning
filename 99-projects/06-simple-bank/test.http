@@ -1,0 +1,59 @@
+
+### Use REST Client extension in VS Code
+@hostname = localhost
+@port = 8888
+
+### Create User
+
+POST http://{{hostname}}:{{port}}/users
+
+{
+  "username": "PSKP953",
+  "password": "pskp95",
+  "email": "pskp2@email.com",
+  "full_name": "Parikshit Patil"
+}
+
+### Login user
+
+POST http://{{hostname}}:{{port}}/users/login
+
+{
+  "username": "PSKP95",
+  "password": "pskp95"
+}
+
+### Add new account
+POST http://{{hostname}}:{{port}}/accounts
+Content-Type: application/json
+Authorization: bearer v2.local.2Scru0M-KcnrKbZ5T6cNXC61E3ESrbHvcoEZ5p9kQQqmzZBWVDHBScEmxSgPa3eGzaS7W8hndrwqMDDthFJ_HuZwziDVeQYeO2IbyieRswTKRzpmxCPxBcPb58AGCKhpgVR82Pf2GTp3afT2V2Rb2po7rsy1lDdyOKgWcqTH6-M4qrMzmS0qik2WOyi4Rb6smN3sDoklvQHOprM6E6ZQ193nD56wDPXlFMPg-DHwglwb28XSsy5H4VDIaN1h-OaXiUIc8qWfsJqwEw_RNzM.bnVsbA
+
+{
+  "currency": "INR"
+}
+
+### Get Account using Id
+
+GET http://{{hostname}}:{{port}}/accounts/125
+Authorization: bearer v2.local.2Scru0M-KcnrKbZ5T6cNXC61E3ESrbHvcoEZ5p9kQQqmzZBWVDHBScEmxSgPa3eGzaS7W8hndrwqMDDthFJ_HuZwziDVeQYeO2IbyieRswTKRzpmxCPxBcPb58AGCKhpgVR82Pf2GTp3afT2V2Rb2po7rsy1lDdyOKgWcqTH6-M4qrMzmS0qik2WOyi4Rb6smN3sDoklvQHOprM6E6ZQ193nD56wDPXlFMPg-DHwglwb28XSsy5H4VDIaN1h-OaXiUIc8qWfsJqwEw_RNzM.bnVsbA
+
+### List Accounts
+
+GET http://{{hostname}}:{{port}}/accounts?page_size=10&page_id=1
+Authorization: bearer v2.local.2Scru0M-KcnrKbZ5T6cNXC61E3ESrbHvcoEZ5p9kQQqmzZBWVDHBScEmxSgPa3eGzaS7W8hndrwqMDDthFJ_HuZwziDVeQYeO2IbyieRswTKRzpmxCPxBcPb58AGCKhpgVR82Pf2GTp3afT2V2Rb2po7rsy1lDdyOKgWcqTH6-M4qrMzmS0qik2WOyi4Rb6smN3sDoklvQHOprM6E6ZQ193nD56wDPXlFMPg-DHwglwb28XSsy5H4VDIaN1h-OaXiUIc8qWfsJqwEw_RNzM.bnVsbA
+
+### Delete Account
+
+DELETE http://{{hostname}}:{{port}}/accounts/103
+
+### Transfer
+
+POST http://{{hostname}}:{{port}}/transfers
+Authorization: bearer v2.local.2Scru0M-KcnrKbZ5T6cNXC61E3ESrbHvcoEZ5p9kQQqmzZBWVDHBScEmxSgPa3eGzaS7W8hndrwqMDDthFJ_HuZwziDVeQYeO2IbyieRswTKRzpmxCPxBcPb58AGCKhpgVR82Pf2GTp3afT2V2Rb2po7rsy1lDdyOKgWcqTH6-M4qrMzmS0qik2WOyi4Rb6smN3sDoklvQHOprM6E6ZQ193nD56wDPXlFMPg-DHwglwb28XSsy5H4VDIaN1h-OaXiUIc8qWfsJqwEw_RNzM.bnVsbA
+
+{
+  "from_account_id": 90,
+  "to_account_id": 61,
+  "amount": 10,
+  "currency": "USD"
+}

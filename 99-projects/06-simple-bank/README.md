@@ -18,5 +18,10 @@ migrate -path db/migration -database "postgresql://postgres:password@localhost:5
 - Create queries
 - `sqlc generate`
 
+## mockgen
+
+- Install mockgen `go install github.com/golang/mock/mockgen@v1.6.0`
+- Create mock store `mockgen -destination db/mock/store.go -package mockdb github.com/simplebank/db/sqlc Store`
+
 ## References
 

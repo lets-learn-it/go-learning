@@ -23,3 +23,15 @@ village := "Kavathe Ekand"
 - It is determined by whether the variable is **reachable or not reachable**.
 - Variables which escape their local/function scope are allocated on heap which has **extra memory allocation cost**. Variables which are not useful outside local/function scope, make sure they are not escaping their scope.
 
+
+## Basic Types
+
+- `bool` ( default value is `false` )
+- `string` ( default value is "" )
+- `int`, `int8`, `int16`, `int32`, `int64` 
+- `uint`, `uint8`, `uint16`, `uint32`, `uint64`, `uintptr`
+- ( default value for numeric types is `0` )
+- `byte` ( alias for `uint8` )
+- `rune` ( alias for `int32`. represents a Unicode code point )
+- `float32`, `float64`
+- `complex64`, `complex128`

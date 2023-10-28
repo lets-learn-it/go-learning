@@ -12,7 +12,7 @@ type AWSStore struct {
 	Secret string
 }
 
-func New() *AWSStore {
+func New() Store {
 	id := os.Getenv("AWS_ID")
 	if id == "" {
 		panic("AWS_ID not found.")

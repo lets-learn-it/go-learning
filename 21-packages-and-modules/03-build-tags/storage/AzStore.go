@@ -11,7 +11,7 @@ type AzStore struct {
 	ConnString string
 }
 
-func New() *AzStore {
+func New() Store {
 	connstring := os.Getenv("AZURE_CONNECTION_STRING")
 	if connstring == "" {
 		panic("AZURE_CONNECTION_STRING not defined.")
@@ -27,4 +27,8 @@ func (az *AzStore) Upload() {
 
 func (az *AzStore) Download() {
 	fmt.Printf("[%s] Downloading from Azure...\n", az.ConnString)
+}
+
+func (az *AzStore) AzSpecificMethod() {
+	fmt.Println("This is Az specific method.")
 }

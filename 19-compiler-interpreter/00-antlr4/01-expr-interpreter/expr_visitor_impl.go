@@ -13,9 +13,9 @@ type exprVisitor struct {
 	memory map[string]int
 }
 
-func NewExprVisitor() exprVisitor {
+func NewExprVisitor(memory map[string]int) exprVisitor {
 	return exprVisitor{
-		memory: make(map[string]int),
+		memory: memory,
 	}
 }
 

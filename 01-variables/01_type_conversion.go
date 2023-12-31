@@ -12,6 +12,9 @@ func main() {
 	fmt.Printf("Type of months: %s & salary: %s\n",
 		reflect.TypeOf(months).Kind(), reflect.TypeOf(salary).Kind())
 
+	fmt.Printf("Type of months: %T & salary: %T\n",
+		months, salary)
+
 	// convert months to float
 	totalSalary := float64(months) * salary
 

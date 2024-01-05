@@ -1,0 +1,54 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+ name: "simple-mutating-webhook.avabodha.in"
+webhooks:
+ - name: "simple-mutating-webhook.avabodha.in"
+   sideEffects: None
+   admissionReviewVersions: ["v1"]
+   namespaceSelector: {}
+   rules:
+     - apiGroups: [""]
+       apiVersions: ["v1"]
+       operations: ["CREATE"]
+       resources: ["pods"]
+       scope: "*"
+   clientConfig:
+     service:
+       namespace: default
+       name: mutating-webhook
+       path: /mutate-pods
+       port: 443
+     caBundle:
+      # `caBundle` is a PEM encoded CA bundle which will be used to validate the
+      # webhook's server certificate. If unspecified, system trust roots on the
+      # apiserver are used.
+      |
+      LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tDQpNSUlFTkRDQ0F4eWdBd0lCQWdJVWZhTjBiU1Vo
+      dmFQcTBiUjN0WUVvTlROL1czRXdEUVlKS29aSWh2Y05BUUVMDQpCUUF3Z1pReEN6QUpCZ05WQkFZ
+      VEFrbE9NUlF3RWdZRFZRUUlEQXROWVdoaGNtRnphSFJ5WVRFUE1BMEdBMVVFDQpCd3dHVTJGdVoy
+      eHBNUXd3Q2dZRFZRUUtEQU5ZV0ZneEREQUtCZ05WQkFzTUExaFlXREVsTUNNR0ExVUVBd3djDQpi
+      WFYwWVhScGJtY3RkMlZpYUc5dmF5NWtaV1poZFd4MExuTjJZekViTUJrR0NTcUdTSWIzRFFFSkFS
+      WU1ZWE51DQphMlJBWkc0dVkyOXRNQjRYRFRJME1ERXdOVEUxTURjME5Wb1hEVEkxTURFd05ERTFN
+      RGMwTlZvd2daUXhDekFKDQpCZ05WQkFZVEFrbE9NUlF3RWdZRFZRUUlEQXROWVdoaGNtRnphSFJ5
+      WVRFUE1BMEdBMVVFQnd3R1UyRnVaMnhwDQpNUXd3Q2dZRFZRUUtEQU5ZV0ZneEREQUtCZ05WQkFz
+      TUExaFlXREVsTUNNR0ExVUVBd3djYlhWMFlYUnBibWN0DQpkMlZpYUc5dmF5NWtaV1poZFd4MExu
+      TjJZekViTUJrR0NTcUdTSWIzRFFFSkFSWU1ZWE51YTJSQVpHNHVZMjl0DQpNSUlCSWpBTkJna3Fo
+      a2lHOXcwQkFRRUZBQU9DQVE4QU1JSUJDZ0tDQVFFQXNJaHlkMTJPR2Z3TndMYlI5UDN3DQpqTUsx
+      c2lNOWRvVVpsR2V3SHlhMktJWTlsUWNZSTJ6TmY0U1ROMXQ0MXNtOHBZRXU2U1M0bmg2L0RoeU9R
+      MTdMDQpZLy9ibjY5dWY4SkYzcUh4cnA3OXFmQnNOZ0JXNmpRWWZtczZQS0dZYS9PVUVYZkl2d3U3
+      bW5qOWFFNEd4S0hIDQpJOXJndUVidDZ1dHg2cjlEWXdpKzFyOGxiOVZWUkVFOUd6c204L1NITkFH
+      RDh5ellLTnZqdUlRN2IrdUFlZUVnDQpIajIycm83ZkhzVmtMUEVKR1Uyc25zMWVhclNWSlF1SnJa
+      dVpTRUZnRGVqVW5Lbm1rcHNyUzJpci9oZWpmaXVUDQpHRlhhWEw5NUpSVGoyTk5NUDdoVzhkM2RF
+      cTk0aXdSMGUwbXFMMks4NzJkKzhHSEdLbUhGWitJclhoNkF2OGtoDQo3d0lEQVFBQm8zd3dlakFk
+      QmdOVkhRNEVGZ1FVUTdwUlhaSE9uTjRWc0liVm91bGxPdFNYN0VJd0h3WURWUjBqDQpCQmd3Rm9B
+      VVE3cFJYWkhPbk40VnNJYlZvdWxsT3RTWDdFSXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QW5CZ05W
+      DQpIUkVFSURBZWdoeHRkWFJoZEdsdVp5MTNaV0pvYjI5ckxtUmxabUYxYkhRdWMzWmpNQTBHQ1Nx
+      R1NJYjNEUUVCDQpDd1VBQTRJQkFRQkVzUy9oenZQMWYwa2duT0o0YjFWSXc0aFIxaldHTFM1TWpK
+      Q0VxUmdzY3IwNW5zNjZYZ0FhDQpMKzdyRWN1clpHLzVwOEsreTRQb3hpT3Q4T040bkNtRmhhVzJi
+      dTBCdklxb3dIVFUwVkN5cTdJbXhNcTh4ekZZDQpWMXd6bG5IYUNwZS9hdGV3N3lIVGN4UGFYclBr
+      MEVzNnE3V1NvZjFHaWZEVG84TE9USk1STkNBTUQrU3JGQjJsDQo5NWNLKzRBUFZJMXIwbFE1Z2x2
+      MlhyV3VYQnoxNVR5WTI5bTRmcVJvOTY2L2JoM3l5UGQzZFowVHczSVk3VWhXDQp0dUtHTE5lTElG
+      alJGZm16SE8xQnh1V04rQ3Awb3ZjbzBYSTZYTjUwN1dzRjZYL1BkMmZSNkhNei9YemFWdFl4DQpl
+      ZzJLRHdlQmxvdHY4WUpNdjhtRWNqL2o1eTZabGtvbQ0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0t
+      LQ0K

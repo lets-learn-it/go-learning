@@ -1,0 +1,2 @@
+let var1 = 10
+let a = var1 + 2 / (4*6)

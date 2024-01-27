@@ -6,11 +6,11 @@
 
 ## Open-Closed Principle
 
->software entities like class, modules, functions etc., should be able to extend a class behaviour without modifyinh it. Separates existing code from modified code to provide better stability, maintainability and minimizes changes in code.
+>software entities like class, modules, functions etc., should be able to extend a class behaviour without modifying it. Separates existing code from modified code to provide better stability, maintainability and minimizes changes in code.
 
 ## Liskov Substitution Principle
 
->Objects od a superclass should be replaceable with objects of its subclasses without breaking the application.
+>Objects ond a superclass should be replaceable with objects of its subclasses without breaking the application.
 
 ## Interface Segregation Principle
 

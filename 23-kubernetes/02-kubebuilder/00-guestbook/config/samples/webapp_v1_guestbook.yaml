@@ -1,0 +1,13 @@
+apiVersion: webapp.avabodha.in/v1
+kind: Guestbook
+metadata:
+  labels:
+    app.kubernetes.io/name: guestbook
+    app.kubernetes.io/instance: guestbook-sample
+    app.kubernetes.io/part-of: 00-guestbook
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: 00-guestbook
+  name: guestbook-sample
+spec:
+  configMapName: demo
+  size: 2

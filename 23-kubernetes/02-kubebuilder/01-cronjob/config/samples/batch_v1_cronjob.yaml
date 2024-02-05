@@ -1,0 +1,24 @@
+apiVersion: batch.avabodha.in/v1
+kind: CronJob
+metadata:
+  labels:
+    app.kubernetes.io/name: cronjob
+    app.kubernetes.io/instance: cronjob-sample
+    app.kubernetes.io/part-of: 01-cronjob
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: 01-cronjob
+  name: cronjob-sample
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cronjob-sample
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure

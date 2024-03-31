@@ -1,0 +1,3 @@
+Delhi 1000
+Paris 1100
+Tokyo 1200

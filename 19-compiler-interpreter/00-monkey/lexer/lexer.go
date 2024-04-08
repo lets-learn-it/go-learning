@@ -15,6 +15,8 @@ func New(input string) *Lexer {
 	return l
 }
 
+// The purpose of readChar is to give us the next character
+// and advance our position in the input string
 func (l *Lexer) readChar() {
 	if l.readPosition >= len(l.input) {
 		l.ch = 0

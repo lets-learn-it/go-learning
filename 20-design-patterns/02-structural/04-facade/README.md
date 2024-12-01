@@ -13,3 +13,5 @@
 - **facade might provide limited functionality in comparison to working with the subsystem directly**.
 - You can swap library very easily because of facade class.
 - Cons: facade can become **god object** coupled to all classes of an app.
+
+![Facade](./Facade.png)

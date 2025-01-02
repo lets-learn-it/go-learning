@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/user"
 
-	"avabodha.in/monkeylang/repl"
+	"github.com/pskp-95/calc/lexer/repl"
 )
 
 func main() {

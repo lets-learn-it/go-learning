@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io"
 
-	"avabodha.in/monkeylang/lexer"
-	"avabodha.in/monkeylang/token"
+	"github.com/pskp-95/calc/lexer/lexer"
+	"github.com/pskp-95/calc/lexer/token"
 )
 
 const PROMPT = ">>"

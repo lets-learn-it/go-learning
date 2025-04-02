@@ -1,0 +1,9 @@
+apiVersion: dev.avabodha.in/v1
+kind: StaticPage
+metadata:
+  name: testpage
+  namespace: default
+spec:
+  image: nginx:stable-alpine
+  contents: this is a test
+  replicas: 1

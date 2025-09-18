@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  server1:
+    image: linuxserver/openssh-server
+    container_name: server1
+    environment:
+      - PUBLIC_KEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDFLYcQf6PnP4e0oX4sR1ooFrYgRHXWrZySfm3s4Orbf pskp@mint
+      - USER_NAME=pskp
+      - PASSWORD_ACCESS=false
+    ports:
+      - "2222:2222"
+    volumes:
+      - ./server2:/home/pskp/.ssh/id_ed25519:ro
+    networks:
+      - sharednet
+
+  server2:
+    image: linuxserver/openssh-server
+    container_name: server2
+    environment:
+      - USER_NAME=pskp
+      - PASSWORD_ACCESS=false
+      - PUBLIC_KEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGTTO7DKlcGMLaDgcFbAoxfqRx3RQ8FgEfBnKiDix3bw pskp@mint
+    networks:
+      - sharednet
+
+networks:
+  sharednet:
+    driver: bridge

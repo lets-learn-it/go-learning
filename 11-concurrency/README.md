@@ -1,10 +1,13 @@
 # Concurrency
 
+**OS scheduler**: Preemptive multitasking while **Go schedule**: Cooperative multitasking.
+**Linux thread**: 2MB memory while **Go routine**: 2KB memory.
+
 ## Concurrency is hard
 
 ### Race Conditions
 
-- occurs when two or mote operations must execute in correct order but its not.
+- occurs when two or more operations must execute in correct order but its not.
 - **data race**: one concurrent operation attempts to read a variable while at some undermined time another concurrent operation is attempting to write to the same variable.
 
 ### Atomicity

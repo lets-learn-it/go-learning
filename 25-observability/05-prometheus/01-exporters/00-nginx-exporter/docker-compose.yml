@@ -1,0 +1,27 @@
+version: "3"
+services:
+  nginx:
+    image: nginx:1.29.4-alpine3.23
+    ports:
+      - 8080:8080
+      - 8181:80
+    volumes:
+      - ./nginx/status.conf:/etc/nginx/conf.d/status.conf
+      - ./nginx/access.log:/var/log/nginx/access.log
+
+  nginx-exporter:
+    build: .
+    command: ["-target.log=/var/log/nginx/access.log", "-target.host=nginx"]
+    depends_on:
+      - nginx
+    ports:
+      - 9150:9150
+    volumes:
+      - ./nginx/access.log:/var/log/nginx/access.log
+
+  prometheus:
+    image: prom/prometheus:v3.8.1
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml

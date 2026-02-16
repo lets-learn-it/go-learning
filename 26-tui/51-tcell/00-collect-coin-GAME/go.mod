@@ -1,4 +1,4 @@
-module github.com/pskp-95/tui/tcell-game
+module github.com/pskp-95/tui/collect-coin-GAME
 
 go 1.25.4
 

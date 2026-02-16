@@ -18,7 +18,7 @@ func setupCoins(level int) []*Sprite {
 	coins := make([]*Sprite, level+2)
 
 	for index := range level + 2 {
-		coins[index] = NewSprite('0', rand.Intn(20), rand.Intn(20)+4)
+		coins[index] = NewSprite('🪙', rand.Intn(20), rand.Intn(20)+4)
 	}
 
 	return coins
@@ -37,7 +37,7 @@ func main() {
 	}
 
 	// game init
-	player := NewSprite('@', 10, 10)
+	player := NewSprite('🖐', 10, 10)
 	coins := setupCoins(1)
 
 	score := 0
@@ -89,7 +89,7 @@ func main() {
 		// coin collected?
 		if playerMoved {
 			for index, coin := range coins {
-				if coin.X == player.X && coin.Y == player.Y {
+				if (coin.X == player.X || coin.X == player.X+1 || coin.X == player.X-1) && coin.Y == player.Y {
 					coins[index] = coins[len(coins)-1]
 					coins = coins[:len(coins)-1]
 					score++

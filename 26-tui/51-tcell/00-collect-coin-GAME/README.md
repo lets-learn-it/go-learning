@@ -1,4 +1,4 @@
-# Tcell game
+# collect coin GAME
 
 ## References
 

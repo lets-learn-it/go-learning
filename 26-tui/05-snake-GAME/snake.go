@@ -3,10 +3,15 @@ package main
 type snake struct {
 	body      []position
 	direction direction
+	w         int
+	h         int
 }
 
-func newSnake() *snake {
-	s := &snake{}
+func newSnake(w, h int) *snake {
+	s := &snake{
+		w: w,
+		h: h,
+	}
 
 	s.body = append(s.body, position{x: 5, y: 5})
 	s.direction = east
@@ -38,8 +43,16 @@ func (s *snake) moveAndEat(d direction, food position) bool {
 	}
 }
 
+func (s *snake) teleport(w, h int) {
+	for i := 0; i < len(s.body); i++ {
+		s.body[i] = teleport(s.w, s.h, w, h, s.body[i])
+	}
+	s.w = w
+	s.h = h
+}
+
 func (s *snake) hitWall(w, h int) bool {
-	return s.body[0].x <= 0 || s.body[0].y <= 0 || s.body[0].x >= w || s.body[0].y >= h
+	return s.body[0].x <= 1 || s.body[0].y <= 1 || s.body[0].x >= w || s.body[0].y >= h
 }
 
 func (s *snake) ateItself() bool {

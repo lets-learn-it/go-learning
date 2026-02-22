@@ -22,16 +22,20 @@ type game struct {
 	snake *snake
 	food  position
 	pause bool
+
+	x, y int
 }
 
-func newGame() *game {
+func newGame(x, y int) *game {
 	rand.Seed(time.Now().UnixNano())
 
 	game := &game{
 		score: 0,
-		snake: newSnake(),
+		snake: newSnake(x, y),
 		food:  randomPosition(),
 		pause: false,
+		x:     x,
+		y:     y,
 	}
 
 	go game.listenForKeyPress()
@@ -54,13 +58,25 @@ func (g *game) listenForKeyPress() {
 
 		switch char {
 		case 'w':
-			g.snake.direction = north
+			if g.snake.direction != south {
+				g.snake.direction = north
+			}
+
 		case 'a':
-			g.snake.direction = west
+			if g.snake.direction != east {
+				g.snake.direction = west
+			}
+
 		case 's':
-			g.snake.direction = south
+			if g.snake.direction != north {
+				g.snake.direction = south
+			}
+
 		case 'd':
-			g.snake.direction = east
+			if g.snake.direction != west {
+				g.snake.direction = east
+			}
+
 		case ' ':
 			g.pause = g.pause != true
 
@@ -90,6 +106,9 @@ func (g *game) beforeGame() {
 }
 
 func (g *game) over() {
+	g.pause = true
+	time.Sleep(2 * time.Second)
+
 	clear(screen)
 	showCursor(screen)
 
@@ -161,6 +180,11 @@ func (g *game) nextStep() {
 }
 
 func (g *game) draw() {
+	maxX, maxY := getSize()
+	g.snake.teleport(maxX, maxY)
+	g.food = teleport(g.x, g.y, maxX, maxY, g.food)
+	g.x = maxX
+	g.y = maxY
 	// food
 	moveCursor(screen, g.food.x, g.food.y)
 	draw(screen, foodSprite)

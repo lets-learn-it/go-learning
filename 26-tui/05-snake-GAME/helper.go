@@ -98,3 +98,13 @@ func decreaseSpeed() {
 		sleepTime = 200
 	}
 }
+
+func teleport(w1, h1, w2, h2 int, pos position) position {
+	np := position{
+		x: 1 + ((pos.x * w2) / w1),
+		y: 1 + ((pos.y * h2) / h1),
+	}
+
+	fmt.Fprintf(os.Stderr, "w1: %d, h1: %d, w2: %d, h2: %d, pos: %v, np: %v\n", w1, h1, w2, h2, pos, np)
+	return np
+}

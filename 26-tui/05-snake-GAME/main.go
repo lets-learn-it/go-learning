@@ -19,12 +19,12 @@ func main() {
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, syscall.SIGWINCH)
 
-	g := newGame()
+	maxX, maxY := getSize()
+	g := newGame(maxX, maxY)
 	g.beforeGame()
 
 	clear(screen)
 
-	maxX, maxY := getSize()
 	drawBox(maxX, maxY)
 	g.draw()
 

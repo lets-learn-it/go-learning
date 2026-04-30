@@ -1,23 +1,5 @@
 package main
 
-import "fmt"
-
-type EvictionAlgo interface {
-	evict(c *Cache)
-}
-
-type Fifo struct{}
-
-func (l *Fifo) evict(c *Cache) {
-	fmt.Println("Evicting by FIFO strategy")
-}
-
-type Lru struct{}
-
-func (l *Lru) evict(c *Cache) {
-	fmt.Println("Evicting by LRU strategy")
-}
-
 type Cache struct {
 	storage      map[string]string
 	evictionAlgo EvictionAlgo
@@ -53,11 +35,19 @@ func (c *Cache) evict() {
 
 func main() {
 	lru := &Lru{}
+	fifo := &Fifo{}
 
-	cache := initCache(lru)
+	cache1 := initCache(lru)
 
-	cache.add("a", "1")
-	cache.add("b", "2")
-	cache.add("c", "3")
-	cache.add("c", "4")
+	cache1.add("a", "1")
+	cache1.add("b", "2")
+	cache1.add("c", "3")
+	cache1.add("c", "4")
+
+	cache2 := initCache(fifo)
+
+	cache2.add("a", "1")
+	cache2.add("b", "2")
+	cache2.add("c", "3")
+	cache2.add("c", "4")
 }
